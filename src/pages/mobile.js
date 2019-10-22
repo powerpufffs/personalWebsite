@@ -43,7 +43,7 @@ const mobile = () => {
 						bs={true}
 						as={`center`}
 					/>
-					<TitleSecondary mt={`32px`}>
+					<TitleSecondary mt={`60px`}>
 						Loading Animations
 					</TitleSecondary>
 					<Paragraph mt={`8px`}>
@@ -78,7 +78,7 @@ const mobile = () => {
 						bs={true}
 						as={`center`}
 					/>
-					<TitleSecondary mt={`32px`}>
+					<TitleSecondary mt={`60px`}>
 						Y-Time Feature
 					</TitleSecondary>
 					<Paragraph mt={`8px`}>

@@ -15,6 +15,7 @@ const Layout = ({ bgShape, children }) => (
 				minmax(1.2rem, 1fr)
 				minmax(auto, 600px)
 				minmax(1.2rem, 1fr);
+      padding: 16px 0px;
       background-image: url("${bgShape}");
       background-repeat: repeat-x;
       background-attachment: fixed;
@@ -22,7 +23,6 @@ const Layout = ({ bgShape, children }) => (
       background-color: #f6fcff;
       color: #212429;
       font-family: sans-serif;
-      z-index: 1;
     `}
   >
     <FontLoader />
