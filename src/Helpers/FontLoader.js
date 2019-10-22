@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import Webfont from 'webfontloader'
 
 const FontLoader = () => {
 	useEffect(() => {
+		const Webfont = require('webfontloader')
 		Webfont.load({
 			google: { 
 				families: [
