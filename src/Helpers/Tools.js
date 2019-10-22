@@ -11,7 +11,7 @@ export const Base = ({
   m = "none",
   pt = "none",
   p = "none",
-  ...props,
+  ...props
 }) => {
   return (
     <div
