@@ -12,12 +12,21 @@ import BackButton from '../components/BackButton'
 const mobile = () => {
 	return (
 		<Layout bgShape={require(`../images/whatsappBGLight.png`)}>
-			<div css={css`grid-column: 2;`}>
-				<BackButton/>
-				<TitlePrimary mt={`10px`}>
+			<div css={css`
+					grid-column: 2;
+					backdrop-filter: blur(1.5px) brightness(97%);
+					z-index: 2;
+					padding: 32px;
+					@media screen and (max-width: 500px) {
+						padding: 12px;
+					}
+				`}
+			>
+				<BackButton>Home</BackButton>
+				<TitlePrimary mt={`4px`}>
 					Mobile Projects
 				</TitlePrimary>
-				<Col mt={`40px`}>
+				<Col mt={`20px`}>
 					<TitleSecondary>
 						Off Campus Housing Feature
 					</TitleSecondary>

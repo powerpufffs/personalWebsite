@@ -8,7 +8,7 @@ import { overrideLinks } from '../Helpers/styles'
 const Back = styled(AniLink)`
 	${overrideLinks};
 	font-size: 18px;
-	font-weight: bold;
+	font-weight: normal;
 	::before {
 		content: '∆';
 		display: inline-block;
@@ -19,9 +19,9 @@ const Back = styled(AniLink)`
 		text-decoration: underline;
 	}
 `
-const BackButton = () => (
+const BackButton = ({ children }) => (
 	<Back fade to="/" duration={1}>
-		back
+		{ children }
 	</Back>
 )
 

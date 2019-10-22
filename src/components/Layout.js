@@ -10,7 +10,7 @@ const Layout = ({ bgShape, children }) => (
     p={3}
     css={css`
 			display: grid;
-			display: grid;
+      position: relative;
 			grid-template-columns:
 				minmax(1.2rem, 1fr)
 				minmax(auto, 600px)
@@ -22,6 +22,7 @@ const Layout = ({ bgShape, children }) => (
       background-color: #f6fcff;
       color: #212429;
       font-family: sans-serif;
+      z-index: 1;
     `}
   >
     <FontLoader />
