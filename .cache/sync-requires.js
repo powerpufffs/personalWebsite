@@ -8,6 +8,6 @@ exports.components = {
   "component---cache-dev-404-page-js": hot(preferDefault(require("/Users/ztai/Downloads/Code/personalWebsite/.cache/dev-404-page.js"))),
   "component---src-pages-index-js": hot(preferDefault(require("/Users/ztai/Downloads/Code/personalWebsite/src/pages/index.js"))),
   "component---src-pages-mobile-js": hot(preferDefault(require("/Users/ztai/Downloads/Code/personalWebsite/src/pages/mobile.js"))),
-  "component---src-pages-web-js": hot(preferDefault(require("/Users/ztai/Downloads/Code/personalWebsite/src/pages/web.js")))
+  "component---src-pages-fancy-js": hot(preferDefault(require("/Users/ztai/Downloads/Code/personalWebsite/src/pages/fancy.js")))
 }
 

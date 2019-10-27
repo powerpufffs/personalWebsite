@@ -6,8 +6,8 @@ import { Col, Row } from 'boostly-ui2'
 import { TitlePrimary, TitleSecondary } from '../Helpers/Titles'
 import Paragraph from '../components/Paragraph'
 import Layout from '../components/Layout'
-import GifLoader from '../components/GifLoader'
 import BackButton from '../components/BackButton'
+import GifLoader from '../components/GifLoader'
 
 const mobile = () => {
 	return (
@@ -36,6 +36,7 @@ const mobile = () => {
 					</Paragraph>
 					<GifLoader 
 						gif={require('../images/och.gif')} 
+						still={require('../images/ochStill.png')}
 						alt="Gif of new OCH feature" 
 						h={`444.6px`} 
 						w={`250px`}
@@ -47,12 +48,13 @@ const mobile = () => {
 						Loading Animations
 					</TitleSecondary>
 					<Paragraph mt={`8px`}>
-						Created animations during a departmnet-wide hackathon.
+						Created animations during a department-wide hackathon.
 						Built on Kite Compositor, and rendered natively as CARR
 						files. Tons of fun.
 					</Paragraph>
 					<GifLoader 
 						gif={require('../images/yLoad.gif')} 
+						still={require('../images/yLoadStill.png')}
 						alt="Gif of wheel spinning loading animation." 
 						h={`444.6px`} 
 						w={`250px`}
@@ -62,6 +64,7 @@ const mobile = () => {
 					/>
 					<GifLoader 
 						gif={require('../images/cosmos.gif')} 
+						still={require('../images/cosmosStill.png')}
 						alt="Gif of wheel spinning loading animation." 
 						h={`444.6px`} 
 						w={`250px`}
@@ -71,6 +74,7 @@ const mobile = () => {
 					/>
 					<GifLoader 
 						gif={require('../images/wheel.gif')} 
+						still={require('../images/wheelStill.png')}
 						alt="Gif of wheel spinning loading animation." 
 						h={`444.6px`} 
 						w={`250px`}
