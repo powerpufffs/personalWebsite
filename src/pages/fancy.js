@@ -50,18 +50,12 @@ const web = () => {
             <Caption>Click here for plain view</Caption>
           </Link>
         </Col>
-        <Orbit
-          radius="400px"
-          duration="10s"
-          delay={`-${Math.random() * 20}s`}
-          isPlaying={false}
-        >
+        <Orbit radius="400px" duration="10s" delay={`-${Math.random() * 20}s`}>
           <SVGLoader svg={require("../images/mobilePhone.svg")} />
         </Orbit>
         <Orbit
           radius="525px"
           duration="20s"
-          onClick={() => console.log("clicked")}
           delay={`-${Math.random() * 20}s`}
           reverse="true"
         >
