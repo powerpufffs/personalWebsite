@@ -17,6 +17,7 @@ const CenterContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #f6fcff;
 `
 const Link = styled(Anilink)`
   ${overrideLinks};
@@ -35,6 +36,11 @@ const web = () => {
     <>
       <CenterContainer>
         <Col x>
+          <Orbit
+            radius="400px"
+            duration="10s"
+            delay={`-${Math.random() * 20}s`}
+          ></Orbit>
           <TitlePrimary>Isaac Z Tai</TitlePrimary>
           <Link
             fade
@@ -52,6 +58,9 @@ const web = () => {
         </Col>
         <Orbit radius="400px" duration="10s" delay={`-${Math.random() * 20}s`}>
           <SVGLoader svg={require("../images/mobilePhone.svg")} />
+          <Link fade to={`/testing`} hex="#000000" duration={0.5}>
+            Testing
+          </Link>
         </Orbit>
         <Orbit
           radius="525px"

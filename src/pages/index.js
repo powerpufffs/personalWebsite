@@ -6,13 +6,11 @@ import Anilink from "gatsby-plugin-transition-link/AniLink"
 
 import { setup, overrideLinks } from "../Helpers/styles"
 import { Row, Col } from "boostly-ui2"
-import { TitlePrimary, TitleSecondary } from "../Helpers/Titles"
+import { TitlePrimary, TitleSecondary, Caption } from "../Helpers/Titles"
 import Layout from "../components/Layout"
 
 const Content = styled.div`
   grid-column: 2;
-  font-family: Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-    sans-serif;
 `
 const Link = styled(Anilink)`
   ${overrideLinks};
@@ -34,7 +32,7 @@ const index = () => {
             }
           `}
         >
-          Click here if you can handle it
+        <Caption>Click here if you can handle it</Caption> 
         </Link>
         <Col mt={`30px`} space={`evenly`}>
           <Link paintDrip to={`/mobile`} hex="#fceb95" duration={0.5}>

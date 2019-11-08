@@ -1,27 +1,33 @@
 /**@jsx jsx */
 import React from "react"
-import { css, jsx } from '@emotion/core'
+import { css, jsx } from "@emotion/core"
 
 const CirclePathText = ({ className, children }) => (
   <svg
-    className="className"
-    width="400px"
-    height="300px"
-    viewBox="0 0 437 437"
+    className={className}
+    width="393px"
+    height="393px"
+    viewBox="0 0 393 393"
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
-		xmlnsXlink="http://www.w3.org/1999/xlink"
-		fill="transparent"
+    xmlnsXlink="http://www.w3.org/1999/xlink"
   >
-		<path
-			d="M1,196.004211 C1,98.5937856 87.180025,0.533933534 196.862189,1.17865666 C306.544353,1.8297662 389,90.3965294 389,196.004211 C389,301.611893 302.906569,390.178657 196.862189,390.178657 C90.8178091,390.178657 1,308.576214 1,196.004211 Z"
-			id="curve"
-		></path>
-		<text width="500" fill="black">
-			<textPath xlinkHref="#curve">
-				{children}
-			</textPath>
-		</text>
+    <rect
+      id="Rectangle"
+      fill="transparent"
+      x="0"
+      y="0"
+      width="393"
+      height="393"
+    />
+    <path
+      id="curve"
+      fill="transparent"
+      d="M196.5,47 C306.200251,47 346.90004,136.523831 347.002437,196.5 C347.09996,256.476169 308.142618,347 197,347 C85.8573821,347 47.0999603,256.476169 46.998521,196.5 C46.9000397,136.523831 86.799749,47 196.5,47 Z"
+    />
+    <text width="393px" fill="black">
+      <textPath xlinkHref="#curve">{children}</textPath>
+    </text>
   </svg>
 )
 
