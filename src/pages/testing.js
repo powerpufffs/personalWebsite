@@ -21,8 +21,12 @@ const testing = () => {
   // const degrees = useSpring({ degrees: `360deg`, from: { degrees: `0deg` } })
   const { degrees } = useSpring({
     from: { degrees: 0 },
-    degrees: 360,
-    config: { duration: 10000 },
+    to: async next => {
+      while (1) {
+        await next({ degrees: 360, reset: true })
+      }
+    },
+    config: { duration: 100000 },
     reset: true,
   })
 
@@ -36,7 +40,9 @@ const testing = () => {
           background: `black`,
           transform: degrees.interpolate(d => `rotate(${d}deg)`),
         }}
-      >hello</animated.div>
+      >
+        hello
+      </animated.div>
       <ContentSection
         css={css`
           background-color: tomato;
