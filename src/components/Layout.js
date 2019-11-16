@@ -20,7 +20,8 @@ const Layout = ({ bgShape, children }) => (
       background-repeat: repeat-x;
       background-attachment: fixed;
       /* background-position: center top; */
-      background-color: #f6fcff;
+      /* background-color: #f6fcff; */
+      background: linear-gradient(to left top, hsla(0, 0%, 0%, 0.05), hsla(0, 0%, 0%, 0));
       color: #212429;
       font-family: sans-serif;
     `}
