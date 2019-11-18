@@ -1,29 +1,45 @@
 /**@jsx jsx*/
-import React, { useState, useEffect } from "react"
-import { css, jsx } from "@emotion/core"
+import React, { useState, useEffect, useMemo } from "react"
+import { css, jsx, cx } from "@emotion/core"
 import styled from "@emotion/styled"
-import { useSpring, useTransition, a, config } from "react-spring"
+import Anilink from "gatsby-plugin-transition-link/AniLink"
+import { navigate } from "gatsby"
+import { useTransition, a, config, useSpring } from "react-spring"
 
+import { setup, overrideLinks } from "../Helpers/styles"
 import Orbit from "../components/Orbit"
 import { TitlePrimary, TitleSecondary, Caption } from "../Helpers/Titles"
+import Switch from "../components/Switch"
 
+const UIButton = styled.div`
+  position: absolute;
+  top: 18px;
+  left: 10px;
+  overflow: visible;
+  pointer-events: none;
+`
 const Title2 = styled(TitleSecondary)`
+  transition: 0.25s;
   &:hover {
     transform: scale(1.1);
     color: hsl(0, 0%, 50%);
   }
+  pointer-events: all;
+`
+const Link = styled(Anilink)`
+  ${overrideLinks};
+  pointer-events: all;
+  color: #21252b;
 `
 
-const nice = () => {
-  const [show, setShow] = useState(false)
-  useEffect(() => {
-    setTimeout(setShow(true), 2000)
-  }, [])
-
-  const transitions = useTransition(show, null, {
+const AnimatedContent = ({ onClick }) => {
+  const transitions = useTransition(true, null, {
     from: { transform: "translate3d(0,-40px,0)", opacity: 0 },
     enter: { transform: "translate3d(0,0px,0)", opacity: 1 },
-    leave: { transform: "translate3d(0,-40px,0)", opacity: 0 },
+    leave: {
+      transform: "translate3d(0,-40px,0)",
+      opacity: 0,
+    },
     config: config.slow,
   })
 
@@ -31,7 +47,6 @@ const nice = () => {
     ({ item, key, props }) =>
       item && (
         <a.div
-          style={props}
           css={css`
             position: relative;
             width: 100vw;
@@ -40,13 +55,16 @@ const nice = () => {
             justify-content: center;
             align-items: center;
           `}
+          style={props}
         >
           <TitlePrimary>Isaac Z Tai</TitlePrimary>
-          <Orbit radius={`400px`} duration={80} delay={30} reverse={true}>
-            <Title2>Contact</Title2>
+          <Orbit radius={`445px`} duration={60} delay={30} reverse={true}>
+            <Title2 onClick={() => handleClick("/mobile")}>Contact</Title2>
           </Orbit>
-          <Orbit radius={`500px`} duration={90} delay={30}>
-            <Title2>Mobile</Title2>
+          <Orbit radius={`525px`} duration={90} delay={30}>
+            <Link paintDrip to={`/mobile`} hex="#fceb95" duration={0.5}>
+              <Title2>Mobile</Title2>
+            </Link>
           </Orbit>
           <Orbit radius={`600px`} duration={50} delay={300} reverse={true}>
             <Title2>Web</Title2>
@@ -56,6 +74,52 @@ const nice = () => {
           </Orbit>
         </a.div>
       )
+  )
+}
+
+const nice = () => {
+  const [show, setShow] = useState(false)
+  const [destination, setDestination] = useState(null)
+  const [isDarkMode, toggleDarkMode] = useState(false)
+  const props = useSpring({
+    backgroundColor: isDarkMode ? "darkgray" : `inherit`,
+  })
+
+  useEffect(() => {
+    setShow(true)
+  }, [])
+
+  const theme = css`
+    /* background-color: ${isDarkMode ? `darkgray` : `inherit`}; */
+    pointer-events: none;
+  `
+
+  const handleClick = to => {
+    setShow(false)
+    setDestination(to)
+  }
+
+  const goTo = () => {
+    navigate(destination)
+  }
+
+  const click = () => toggleDarkMode(prev => !prev)
+  const elements = useMemo(() => <AnimatedContent />, [])
+
+  return (
+    <a.div css={theme} style={props}>
+      <div
+        css={css`
+          position: absolute;
+          top: 20px;
+          left: 20px;
+          pointer-events: none;
+        `}
+      >
+        <Switch onClick={click} />
+      </div>
+      {elements}
+    </a.div>
   )
 }
 

@@ -23,6 +23,7 @@ export const Base = ({
         padding: ${p};
         padding-top: ${pt};
       `}
+      {...props}
     >
       {children}
     </div>
