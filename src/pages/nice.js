@@ -58,15 +58,15 @@ const AnimatedContent = ({ onClick }) => {
           style={props}
         >
           <TitlePrimary>Isaac Z Tai</TitlePrimary>
-          <Orbit radius={`445px`} duration={60} delay={30} reverse={true}>
+          <Orbit radius={`445px`} duration={60} delay={30}>
             <Title2 onClick={() => handleClick("/mobile")}>Contact</Title2>
           </Orbit>
           <Orbit radius={`525px`} duration={90} delay={30}>
-            <Link paintDrip to={`/mobile`} hex="#fceb95" duration={0.5}>
-              <Title2>Mobile</Title2>
-            </Link>
+            {/* <Link paintDrip to={`/mobile`} hex="#fceb95" duration={0.5}> */}
+            <Title2>Mobile</Title2>
+            {/* </Link> */}
           </Orbit>
-          <Orbit radius={`600px`} duration={50} delay={300} reverse={true}>
+          <Orbit radius={`600px`} duration={50} delay={300}>
             <Title2>Web</Title2>
           </Orbit>
           <Orbit radius={`675px`} duration={40} delay={420}>
