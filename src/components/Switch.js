@@ -35,7 +35,6 @@ const Switch = ({ h = 15, w = 60, onClick, ...rest }) => {
       <a.div
         css={css`
           border-radius: 100%;
-          /* background: ${isOn ? `#21252b` : `#7d7d7d`}; */
           height: 30px;
           width: 30px;
         `}

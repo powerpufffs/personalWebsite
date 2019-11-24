@@ -7,8 +7,10 @@ import { navigate } from "gatsby"
 import { useTransition, a, config, useSpring } from "react-spring"
 
 import { setup, overrideLinks } from "../Helpers/styles"
+import { Row, Col } from "boostly-ui2"
 import Orbit from "../components/Orbit"
 import { TitlePrimary, TitleSecondary, Caption } from "../Helpers/Titles"
+import SquareIcon from "../components/SquareIcon"
 import Switch from "../components/Switch"
 
 const UIButton = styled.div`
@@ -57,16 +59,29 @@ const AnimatedContent = ({ onClick }) => {
           `}
           style={props}
         >
-          <TitlePrimary>Isaac Z Tai</TitlePrimary>
-          <Orbit radius={`445px`} duration={60} delay={30}>
+          <Col x>
+            <TitlePrimary>Isaac Z Tai</TitlePrimary>
+            <Row
+              y
+              space="around"
+              css={css`
+                align-self: stretch;
+              `}
+            >
+              <SquareIcon url={require("../images/LinkedinLogo.png")} />
+              <SquareIcon url={require("../images/GitHubLogo.png")} />
+              <SquareIcon url={require("../images/LinkedinLogo.png")} />
+            </Row>
+          </Col>
+          <Orbit radius={`445px`} duration={60} delay={30} reverse={true}>
             <Title2 onClick={() => handleClick("/mobile")}>Contact</Title2>
           </Orbit>
           <Orbit radius={`525px`} duration={90} delay={30}>
-            {/* <Link paintDrip to={`/mobile`} hex="#fceb95" duration={0.5}> */}
-            <Title2>Mobile</Title2>
-            {/* </Link> */}
+            <Link paintDrip to={`/mobile`} hex="#fceb95" duration={0.5}>
+              <Title2>Mobile</Title2>
+            </Link>
           </Orbit>
-          <Orbit radius={`600px`} duration={50} delay={300}>
+          <Orbit radius={`600px`} duration={50} delay={300} reverse={true}>
             <Title2>Web</Title2>
           </Orbit>
           <Orbit radius={`675px`} duration={40} delay={420}>
@@ -77,7 +92,7 @@ const AnimatedContent = ({ onClick }) => {
   )
 }
 
-const nice = () => {
+const Nice = () => {
   const [show, setShow] = useState(false)
   const [destination, setDestination] = useState(null)
   const [isDarkMode, toggleDarkMode] = useState(false)
@@ -111,8 +126,8 @@ const nice = () => {
       <div
         css={css`
           position: absolute;
-          top: 20px;
-          left: 20px;
+          top: 0;
+          left: 0;
           pointer-events: none;
         `}
       >
@@ -123,4 +138,4 @@ const nice = () => {
   )
 }
 
-export default nice
+export default Nice

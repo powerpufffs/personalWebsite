@@ -18,7 +18,8 @@ const Orbit = ({
         await next({ degrees: 360, reset: true, reverse: reverse })
       }
     },
-    config: { duration: duration * 1000 },
+    reverse: reverse,
+    config: { duration: duration * 500 },
     reset: true,
   })
   return (
