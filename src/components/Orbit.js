@@ -31,7 +31,7 @@ const Orbit = ({
         text-align: center;
         pointer-events: none;
       `}
-      style={{ transform: degrees.interpolate(d => `rotate(${d}deg)`) }}
+      style={{ transform: degrees.to(d => `rotate(${d}deg)`) }}
       {...props}
     >
       {children}

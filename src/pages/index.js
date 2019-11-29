@@ -22,7 +22,7 @@ const index = () => {
         <TitlePrimary mt={`40px`}>Isaac Z Tai</TitlePrimary>
         <Link
           fade
-          to={`/fancy`}
+          to={`/nice`}
           duration={0.5}
           css={css`
             display: block;
@@ -32,7 +32,7 @@ const index = () => {
             }
           `}
         >
-        <Caption>Click here if you can handle it</Caption> 
+          <Caption>Click here if you can handle it</Caption>
         </Link>
         <Col mt={`30px`} space={`evenly`}>
           <Link paintDrip to={`/mobile`} hex="#fceb95" duration={0.5}>

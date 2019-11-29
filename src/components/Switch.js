@@ -29,7 +29,7 @@ const Switch = ({ h = 15, w = 60, onClick, ...rest }) => {
         align-items: center;
         overflow: visible;
       `}
-      style={{ backgroundColor: back.interpolate(b => b) }}
+      style={{ backgroundColor: back.to(b => b) }}
       onClick={handleClick}
     >
       <a.div
@@ -39,8 +39,8 @@ const Switch = ({ h = 15, w = 60, onClick, ...rest }) => {
           width: 30px;
         `}
         style={{
-          backgroundColor: front.interpolate(f => f),
-          marginLeft: marginLeft.interpolate(m => `${m}px`),
+          backgroundColor: front.to(f => f),
+          marginLeft: marginLeft.to(m => `${m}px`),
         }}
       />
     </a.div>

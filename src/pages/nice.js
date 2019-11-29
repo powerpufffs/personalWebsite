@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 /**@jsx jsx*/
 import React, { useState, useEffect, useMemo } from "react"
 import { css, jsx, cx } from "@emotion/core"
 import styled from "@emotion/styled"
 import Anilink from "gatsby-plugin-transition-link/AniLink"
-import { navigate } from "gatsby"
+import { navigate, Link } from "gatsby"
 import { useTransition, a, config, useSpring } from "react-spring"
 
 import { setup, overrideLinks } from "../Helpers/styles"
@@ -28,22 +29,25 @@ const Title2 = styled(TitleSecondary)`
   }
   pointer-events: all;
 `
-const Link = styled(Anilink)`
-  ${overrideLinks};
-  pointer-events: all;
-  color: #21252b;
-`
 
-const AnimatedContent = ({ onClick }) => {
-  const transitions = useTransition(true, null, {
+const AnimatedContent = ({ callback = () => {}, onClick }) => {
+  const [show, setShow] = useState(true)
+  const [destination, setDestination] = useState("/")
+  const transitions = useTransition(show, null, {
     from: { transform: "translate3d(0,-40px,0)", opacity: 0 },
-    enter: { transform: "translate3d(0,0px,0)", opacity: 1 },
+    enter: { transform: "translate3d(0,0px,0)", opacity: 1, delay: 800 },
     leave: {
       transform: "translate3d(0,-40px,0)",
       opacity: 0,
     },
     config: config.slow,
+    onDestroyed: () => callback(destination),
   })
+
+  const handleClick = dest => {
+    setDestination(dest)
+    setShow(false)
+  }
 
   return transitions.map(
     ({ item, key, props }) =>
@@ -56,11 +60,24 @@ const AnimatedContent = ({ onClick }) => {
             display: flex;
             justify-content: center;
             align-items: center;
+            background-color: transparent;
           `}
           style={props}
         >
           <Col x>
             <TitlePrimary>Isaac Z Tai</TitlePrimary>
+            <Caption
+              css={css`
+                cursor: pointer;
+                pointer-events: all;
+                &:hover {
+                  text-decoration: underline;
+                }
+              `}
+              onClick={() => handleClick("/")}
+            >
+              this is too much
+            </Caption>
             <Row
               y
               space="around"
@@ -70,22 +87,19 @@ const AnimatedContent = ({ onClick }) => {
             >
               <SquareIcon url={require("../images/LinkedinLogo.png")} />
               <SquareIcon url={require("../images/GitHubLogo.png")} />
-              <SquareIcon url={require("../images/LinkedinLogo.png")} />
             </Row>
           </Col>
           <Orbit radius={`445px`} duration={60} delay={30} reverse={true}>
-            <Title2 onClick={() => handleClick("/mobile")}>Contact</Title2>
+            <Title2 onClick={() => handleClick("/contact")}>Contact</Title2>
           </Orbit>
           <Orbit radius={`525px`} duration={90} delay={30}>
-            <Link paintDrip to={`/mobile`} hex="#fceb95" duration={0.5}>
-              <Title2>Mobile</Title2>
-            </Link>
+            <Title2 onClick={() => handleClick("/mobile")}>Mobile</Title2>
           </Orbit>
           <Orbit radius={`600px`} duration={50} delay={300} reverse={true}>
-            <Title2>Web</Title2>
+            <Title2 onClick={() => handleClick("/web")}>Web</Title2>
           </Orbit>
           <Orbit radius={`675px`} duration={40} delay={420}>
-            <Title2>Other</Title2>
+            <Title2 onClick={() => handleClick("/other")}>Other</Title2>
           </Orbit>
         </a.div>
       )
@@ -93,45 +107,34 @@ const AnimatedContent = ({ onClick }) => {
 }
 
 const Nice = () => {
-  const [show, setShow] = useState(false)
-  const [destination, setDestination] = useState(null)
   const [isDarkMode, toggleDarkMode] = useState(false)
   const props = useSpring({
-    backgroundColor: isDarkMode ? "darkgray" : `inherit`,
+    backgroundColor: isDarkMode ? "#21252b" : `white`,
+    color: isDarkMode ? "#cccccc" : "black",
   })
-
-  useEffect(() => {
-    setShow(true)
-  }, [])
-
   const theme = css`
-    /* background-color: ${isDarkMode ? `darkgray` : `inherit`}; */
     pointer-events: none;
   `
 
-  const handleClick = to => {
-    setShow(false)
-    setDestination(to)
+  const goTo = dest => {
+    navigate(dest)
   }
 
-  const goTo = () => {
-    navigate(destination)
-  }
-
-  const click = () => toggleDarkMode(prev => !prev)
-  const elements = useMemo(() => <AnimatedContent />, [])
+  const elements = useMemo(() => {
+    return <AnimatedContent callback={goTo} />
+  }, [])
 
   return (
     <a.div css={theme} style={props}>
       <div
         css={css`
           position: absolute;
-          top: 0;
-          left: 0;
+          top: 20px;
+          left: 20px;
           pointer-events: none;
         `}
       >
-        <Switch onClick={click} />
+        <Switch onClick={() => toggleDarkMode(prev => !prev)} />
       </div>
       {elements}
     </a.div>
