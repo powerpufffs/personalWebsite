@@ -96,7 +96,10 @@ const AnimatedContent = ({ callback = () => {}, onClick }) => {
   )
 }
 
-const socials = [`LinkedinLogo.png`, `GitHubLogo.png`]
+const socials = [
+  [`LinkedinLogo.png`, `www.linkedin.com/in/ztai`],
+  [`GitHubLogo.png`, `www.github.com/powerpufffs`],
+]
 const Nice = () => {
   const [isDarkMode, toggleDarkMode] = useState(false)
   const props = useSpring({
@@ -106,12 +109,12 @@ const Nice = () => {
   const switchProps = useSpring({
     from: { transform: `translateX(-50px)`, opacity: 0 },
     to: { transform: `translateX(0px)`, opacity: 1 },
-    delay: 2000,
+    delay: 1500,
   })
   const socialsTrail = useTrail(socials.length, {
     from: { opacity: 1, y: -200 },
     to: { opacity: 1, y: 0 },
-    delay: 3000,
+    delay: 2000,
   })
   const theme = css`
     pointer-events: none;
@@ -145,13 +148,22 @@ const Nice = () => {
             height: 100px;
           `}
         >
-          {socialsTrail.map(({ opacity, y }, i) => (
-            <a.div
-              style={{ opacity, transform: y.to(y => `translateY(${y}px)`) }}
-            >
-              <SquareIcon url={require(`../images/${socials[i]}`)} />
-            </a.div>
-          ))}
+          {socialsTrail.map(({ opacity, y }, i) => {
+            const [imageUrl, url] = socials[i]
+            return (
+              <a.div
+                style={{ opacity, transform: y.to(y => `translateY(${y}px)`) }}
+              >
+                <SquareIcon
+                  url={require(`../images/${imageUrl}`)}
+                  onClick={() => {
+                    typeof window !== `undefined` &&
+                      window.open(`https://${url}`)
+                  }}
+                />
+              </a.div>
+            )
+          })}
         </Col>
       </a.div>
       {elements}
