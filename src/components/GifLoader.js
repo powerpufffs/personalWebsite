@@ -69,13 +69,13 @@ const GifLoader = ({
         alt="The frame of a hypothetical iphone."
         css={css`
           position: absolute;
-          top: -16px;
-          left: -17px;
+          top: -14.5px;
+          left: -16.5px;
           height: 106.5%;
           width: 116%;
           border-radius: 35px;
         `}
-        src={require("../images/iphoneXWhite.png")}
+        src={require("../images/iphoneXDark.png")}
       />
     </div>
   )

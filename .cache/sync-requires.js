@@ -10,6 +10,7 @@ exports.components = {
   "component---src-pages-index-js": hot(preferDefault(require("/Users/ztai/Downloads/Code/personalWebsite/src/pages/index.js"))),
   "component---src-pages-mobile-js": hot(preferDefault(require("/Users/ztai/Downloads/Code/personalWebsite/src/pages/mobile.js"))),
   "component---src-pages-nice-js": hot(preferDefault(require("/Users/ztai/Downloads/Code/personalWebsite/src/pages/nice.js"))),
-  "component---src-pages-testing-js": hot(preferDefault(require("/Users/ztai/Downloads/Code/personalWebsite/src/pages/testing.js")))
+  "component---src-pages-testing-js": hot(preferDefault(require("/Users/ztai/Downloads/Code/personalWebsite/src/pages/testing.js"))),
+  "component---src-pages-mobile-snap-js": hot(preferDefault(require("/Users/ztai/Downloads/Code/personalWebsite/src/pages/mobileSnap.js")))
 }
 
