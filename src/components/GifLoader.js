@@ -16,8 +16,13 @@ const GifLoader = ({
   ...rest
 }) => {
   const [isPlaying, setPlay] = useState(false)
+  const handler = () => {
+    setPlay(prev => !prev)
+  }
   return (
     <div
+      role="button"
+      tabIndex="0"
       // className={classNames('gif_player', { 'playing': playing })}
       css={css`
         position: relative;
@@ -48,7 +53,8 @@ const GifLoader = ({
           transition: 0.5s ease-in-out;
         }
       `}
-      onClick={() => setPlay(prev => !prev)}
+      onClick={handler}
+      onKeyDown={handler}
     >
       <img
         css={css`
@@ -60,6 +66,7 @@ const GifLoader = ({
         alt={alt}
       />
       <img
+        alt="The frame of a hypothetical iphone."
         css={css`
           position: absolute;
           top: -15px;
