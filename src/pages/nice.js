@@ -28,6 +28,7 @@ const Title2 = styled(TitleSecondary)`
     color: hsl(0, 0%, 50%);
   }
   pointer-events: all;
+  cursor: pointer;
 `
 
 const AnimatedContent = ({ callback = () => {}, onClick }) => {

@@ -8,7 +8,7 @@ const Switch = ({ h = 15, w = 60, onClick, ...rest }) => {
   const { marginLeft, back, front } = useSpring({
     marginLeft: isOn ? w * 0.5 : 0,
     back: isOn ? `#fefefe` : `#282c34`,
-    front: isOn ? `#21252b` : `#7d7d7d`,
+    front: isOn ? `#848689` : `#93a5b4`,
   })
 
   const handleClick = () => {
