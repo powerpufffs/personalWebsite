@@ -22,17 +22,15 @@ const GifLoader = ({
   return (
     <div
       role="button"
-      tabIndex="0"
       // className={classNames('gif_player', { 'playing': playing })}
       css={css`
         position: relative;
+        border-radius: 20px;
         margin-top: ${mt};
-        box-shadow: ${bs
-          ? "0 4px 30px hsla(0, 0%, 0%, 0.3), 0 5px 10px hsla(0, 0%, 0%, 0.1)"
-          : "none"};
         align-self: ${as};
         height: ${h};
         width: ${w};
+        /* box-shadow: 0px 3px 15px rgba(0,0,0,0.2); */
         &::after {
           content: "GIF";
           opacity: ${isPlaying ? 0 : 1};
@@ -60,6 +58,8 @@ const GifLoader = ({
         css={css`
           height: 100%;
           width: 100%;
+          border-radius: 20px;
+          box-shadow: 0px 15px 50px rgba(0, 0, 0, 0.2);
         `}
         {...rest}
         src={isPlaying ? gif || still : still || gif}
@@ -69,12 +69,13 @@ const GifLoader = ({
         alt="The frame of a hypothetical iphone."
         css={css`
           position: absolute;
-          top: -15px;
+          top: -16px;
           left: -17px;
           height: 106.5%;
-          width: 115%;
+          width: 116%;
+          border-radius: 35px;
         `}
-        src={require("../images/iphoneFrame.png")}
+        src={require("../images/iphoneXWhite.png")}
       />
     </div>
   )
