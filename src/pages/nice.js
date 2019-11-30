@@ -5,7 +5,7 @@ import { css, jsx, cx } from "@emotion/core"
 import styled from "@emotion/styled"
 import Anilink from "gatsby-plugin-transition-link/AniLink"
 import { navigate, Link } from "gatsby"
-import { useTransition, a, config, useSpring } from "react-spring"
+import { useTransition, a, config, useSpring, useTrail } from "react-spring"
 
 import { setup, overrideLinks } from "../Helpers/styles"
 import { Row, Col } from "boostly-ui2"
@@ -78,16 +78,6 @@ const AnimatedContent = ({ callback = () => {}, onClick }) => {
             >
               this is too much
             </Caption>
-            <Row
-              y
-              space="around"
-              css={css`
-                align-self: stretch;
-              `}
-            >
-              <SquareIcon url={require("../images/LinkedinLogo.png")} />
-              <SquareIcon url={require("../images/GitHubLogo.png")} />
-            </Row>
           </Col>
           <Orbit radius={`445px`} duration={60} delay={30} reverse={true}>
             <Title2 onClick={() => handleClick("/contact")}>Contact</Title2>
@@ -106,36 +96,64 @@ const AnimatedContent = ({ callback = () => {}, onClick }) => {
   )
 }
 
+const socials = [`LinkedinLogo.png`, `GitHubLogo.png`]
 const Nice = () => {
   const [isDarkMode, toggleDarkMode] = useState(false)
   const props = useSpring({
     backgroundColor: isDarkMode ? "#21252b" : `white`,
     color: isDarkMode ? "#cccccc" : "black",
   })
+  const switchProps = useSpring({
+    from: { transform: `translateX(-50px)`, opacity: 0 },
+    to: { transform: `translateX(0px)`, opacity: 1 },
+    delay: 2000,
+  })
+  const socialsTrail = useTrail(socials.length, {
+    from: { opacity: 1, y: -200 },
+    to: { opacity: 1, y: 0 },
+    delay: 3000,
+  })
   const theme = css`
     pointer-events: none;
   `
-
   const goTo = dest => {
     navigate(dest)
   }
-
   const elements = useMemo(() => {
     return <AnimatedContent callback={goTo} />
   }, [])
 
   return (
     <a.div css={theme} style={props}>
-      <div
+      <a.div
         css={css`
           position: absolute;
           top: 20px;
           left: 20px;
           pointer-events: none;
         `}
+        style={switchProps}
       >
         <Switch onClick={() => toggleDarkMode(prev => !prev)} />
-      </div>
+        <Col
+          y
+          space="around"
+          css={css`
+            margin-left: 10px;
+            margin-top: 20px;
+            align-self: stretch;
+            height: 100px;
+          `}
+        >
+          {socialsTrail.map(({ opacity, y }, i) => (
+            <a.div
+              style={{ opacity, transform: y.to(y => `translateY(${y}px)`) }}
+            >
+              <SquareIcon url={require(`../images/${socials[i]}`)} />
+            </a.div>
+          ))}
+        </Col>
+      </a.div>
       {elements}
     </a.div>
   )
