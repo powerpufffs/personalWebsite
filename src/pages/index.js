@@ -11,11 +11,12 @@ import Layout from "../components/Layout"
 
 const Content = styled.div`
   grid-column: 2;
+  pointer-events: all;
 `
 const Link = styled(Anilink)`
   ${overrideLinks};
 `
-const index = () => {
+const Index = ({ changeMode, ...props}) => {
   return (
     <Layout>
       <Content>
@@ -32,7 +33,7 @@ const index = () => {
             }
           `}
         >
-          <Caption>Click here if you can handle it</Caption>
+          <Caption onClick={() => changeMode('nice')}>Click here if you can handle it</Caption>
         </Link>
         <Col mt={`30px`} space={`evenly`}>
           <Link paintDrip to={`/mobile`} hex="#fceb95" duration={0.5}>
@@ -53,4 +54,4 @@ const index = () => {
   )
 }
 
-export default index
+export default Index

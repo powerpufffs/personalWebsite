@@ -13,6 +13,7 @@ const GifLoader = ({
   still,
   playing,
   toggle,
+  shadow,
   ...rest
 }) => {
   const [isPlaying, setPlay] = useState(false)
@@ -30,7 +31,7 @@ const GifLoader = ({
         align-self: ${as};
         height: ${h};
         width: ${w};
-        /* box-shadow: 0px 3px 15px rgba(0,0,0,0.2); */
+        box-shadow: ${shadow && `0px 15px 40px rgba(0,0,0,0.5)`};
         &::after {
           content: "GIF";
           opacity: ${isPlaying ? 0 : 1};
@@ -59,7 +60,6 @@ const GifLoader = ({
           height: 100%;
           width: 100%;
           border-radius: 20px;
-          box-shadow: 0px 15px 50px rgba(0, 0, 0, 0.2);
         `}
         {...rest}
         src={isPlaying ? gif || still : still || gif}
@@ -74,8 +74,9 @@ const GifLoader = ({
           height: 106.5%;
           width: 116%;
           border-radius: 35px;
+          /* background-color: red; */
         `}
-        src={require("../images/iphoneXDark.png")}
+        src={require("../images/iphoneXWhite.png")}
       />
     </div>
   )

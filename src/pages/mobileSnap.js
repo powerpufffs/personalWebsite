@@ -10,6 +10,7 @@ import Paragraph from "../components/Paragraph"
 
 const Container = styled.div`
   height: 100%;
+  background: linear-gradient(to top, hsla(0, 0%, 0%, 0.05), hsla(0, 0%, 0%, 0));
   scroll-snap-type: y proximity;
   overflow-y: scroll;
   display: flex;
@@ -19,7 +20,7 @@ const Container = styled.div`
 const Section = styled.section`
   min-height: 500px;
   width: 800px;
-  scroll-snap-align: start;
+  scroll-snap-align: center;
 `
 const mobileSnap = () => {
   return (

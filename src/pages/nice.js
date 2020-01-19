@@ -7,6 +7,7 @@ import Anilink from "gatsby-plugin-transition-link/AniLink"
 import { navigate, Link } from "gatsby"
 import { useTransition, a, config, useSpring, useTrail } from "react-spring"
 
+import Index from "../pages/index"
 import { setup, overrideLinks } from "../Helpers/styles"
 import { Row, Col } from "boostly-ui2"
 import Orbit from "../components/Orbit"
@@ -31,7 +32,7 @@ const Title2 = styled(TitleSecondary)`
   cursor: pointer;
 `
 
-const AnimatedContent = ({ callback = () => {}, onClick }) => {
+const AnimatedContent = ({ callback = () => {}, changeMode, ...props }) => {
   const [show, setShow] = useState(true)
   const [destination, setDestination] = useState("/")
   const transitions = useTransition(show, null, {
@@ -75,7 +76,7 @@ const AnimatedContent = ({ callback = () => {}, onClick }) => {
                   text-decoration: underline;
                 }
               `}
-              onClick={() => handleClick("/")}
+              onClick={() => changeMode("index")}
             >
               this is too much
             </Caption>
@@ -102,6 +103,7 @@ const socials = [
   [`GitHubLogo.png`, `www.github.com/powerpufffs`],
 ]
 const Nice = () => {
+  const [address, setAddress] = useState("index")
   const [isDarkMode, toggleDarkMode] = useState(false)
   const props = useSpring({
     backgroundColor: isDarkMode ? "#21252b" : `white`,
@@ -124,8 +126,15 @@ const Nice = () => {
     navigate(dest)
   }
   const elements = useMemo(() => {
-    return <AnimatedContent callback={goTo} />
-  }, [])
+    switch (address) {
+      case "nice":
+        return <AnimatedContent callback={goTo} changeMode={setAddress} />
+      case "index":
+        return <Index changeMode={setAddress} />
+      default:
+        break
+    }
+  }, [address])
 
   return (
     <a.div css={theme} style={props}>

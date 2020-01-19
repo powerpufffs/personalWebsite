@@ -22,7 +22,7 @@ const Layout = ({ bgShape, children }) => (
       /* background-position: center top; */
       /* background-color: #f6fcff; */
       background: linear-gradient(to left top, hsla(0, 0%, 0%, 0.05), hsla(0, 0%, 0%, 0));
-      color: #212429;
+      color: inherit;
       font-family: sans-serif;
     `}
   >
