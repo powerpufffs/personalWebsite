@@ -45,6 +45,7 @@ const AnimatedContent = ({ callback = () => {}, onClick }) => {
       <Col x>
         <TitlePrimary>Isaac Z Tai</TitlePrimary>
         <Caption
+          href="/"
           css={css`
             cursor: pointer;
             pointer-events: all;
@@ -52,20 +53,10 @@ const AnimatedContent = ({ callback = () => {}, onClick }) => {
               text-decoration: underline;
             }
           `}
-          onClick={() => handleClick("/")}
+          onClick={() => navigate("/")}
         >
           this is too much
         </Caption>
-        <Row
-          y
-          space="around"
-          css={css`
-            align-self: stretch;
-          `}
-        >
-          <SquareIcon url={require("../images/LinkedinLogo.png")} />
-          <SquareIcon url={require("../images/GitHubLogo.png")} />
-        </Row>
       </Col>
       <Orbit radius={`445px`} duration={60} delay={30} reverse={true}>
         <Title2 onClick={() => handleClick("/contact")}>Contact</Title2>
