@@ -9,27 +9,39 @@ import { TitleSilly, Title } from "../Titles"
 const data = [
   {
     id: "1",
-    title: "Incredible India",
+    title: "BUNDL Kickstarter",
+    subtitle: "iOS app",
+    image: require("../../images/bundl-preview.png"),
   },
   {
     id: "2",
-    title: "Incredible ",
+    title: "Calendly Notifier",
+    subtitle: "Text notification service",
+    image: require("../../images/calendly-preview.jpg"),
   },
   {
     id: "3",
-    title: " India",
+    title: "poqet",
+    subtitle: "Checkout generator",
+    image: require("../../images/bundl-preview.png"),
   },
   {
     id: "4",
-    title: "Incredible India 2",
+    title: "Boostly",
+    subtitle: "Restaurant tech",
+    image: require("../../images/bundl-preview.png"),
   },
   {
     id: "5",
-    title: "Incredible India 3",
+    title: "Off Campus Housing",
+    subtitle: "University app feature",
+    image: require("../../images/bundl-preview.png"),
   },
   {
     id: "6",
-    title: "Incredible 5",
+    title: "BUNDL Kickstarter",
+    subtitle: "",
+    image: require("../../images/bundl-preview.png"),
   },
 ]
 
@@ -43,51 +55,96 @@ const Mosaic = (props) => {
     location.pathname.lastIndexOf("/") + 1
   )
   const id = isInteger(lastPath) ? lastPath : 0
-  console.log(`id: ${id}`)
   return (
-    <AnimateSharedLayout type="crossfade">
-      <AnimatePresence>
-        {id && <SelectedCard id={id} key="selected" />}
-      </AnimatePresence>
-      <motion.div
-        css={css`
-          display: flex;
-          flex-direction: column;
-          flex-wrap: wrap;
-          background-color: black;
-          height: 150vh;
-        `}
-      >
-        {data.map((datum, i) => {
-          return (
-            <Card key={`chin+${datum.id}`} id={datum.id} title={datum.title} />
-          )
-        })}
-      </motion.div>
-    </AnimateSharedLayout>
+    <div
+      css={css`
+        display: grid;
+        grid-template-columns:
+          minmax(1rem, 1fr)
+          minmax(auto, 1200px)
+          minmax(1rem, 1fr);
+        grid-template-rows:
+          minmax(auto, 200px)
+          1fr;
+        background-color: black;
+        @media only screen and (min-width: 1224px) {
+          /* Styles */
+        }
+      `}
+    >
+      <AnimateSharedLayout type="crossfade">
+        <AnimatePresence>
+          {id && <SelectedCard id={id} key="selected" />}
+        </AnimatePresence>
+        <motion.div
+          css={css`
+            grid-column-start: 2;
+            grid-row-start: 2;
+            display: flex;
+            flex-flow: column;
+            max-height: 110vh;
+            margin-left: -8px; /* Adjustment for the gutter */
+            @media only screen and (min-width: 768px) {
+              flex-flow: column wrap;
+              max-height: auto;
+            }
+          `}
+        >
+          {data.map((datum, i) => {
+            const randomHeight = Math.random() * 6 * 80 + 200
+            console.log(randomHeight)
+            return (
+              <Card
+                key={`chin+${datum.id}`}
+                id={datum.id}
+                bgImage={datum.image}
+                title={datum.title}
+                subtitle={datum.subtitle}
+                height={`${randomHeight}px`}
+              />
+            )
+          })}
+        </motion.div>
+      </AnimateSharedLayout>
+    </div>
   )
 }
 
-const Card = ({ id, title, ...props }) => {
+const titleStyle = css`
+  font-weight: 300;
+`
+
+const Card = ({ id, title, bgImage, subtitle, height = "500px", ...props }) => {
   return (
     <>
       <motion.div
         onClick={() => navigate(`/past-work/${id}`)}
         css={css`
-          width: auto;
-          min-width: 250px;
-          min-height: 300px;
+          min-width: 280px;
+          height: ${height};
+          /* min-height: min(${height}, 30vh); */
           background-color: white;
           border-radius: 20px;
           color: black;
           margin: 12px 12px;
           padding: 20px 20px;
           box-sizing: border-box;
+          background-image: url(${bgImage});
+          background-size: cover;
+          background-position: bottom;
+          filter: brightness(150%);
+          mask-image: linear-gradient(to top, hsla(0, 0%, 0%, 50%), white);
+          mask-repeat: no-repeat;
+          color: white;
         `}
         layoutId={`card-id-${id}`}
       >
-        <motion.h1 layoutId={`card-title-${id}`}>{title}</motion.h1>
-        <motion.h2 layoutId={`card-support-${id}`}>Supporting text</motion.h2>
+        <Title size={1} css={titleStyle}>
+          {title}
+        </Title>
+        <Title size={3} css={titleStyle}>
+          {subtitle}
+        </Title>
       </motion.div>
       {/* <Link
         to={`${id}`}

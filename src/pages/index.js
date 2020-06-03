@@ -17,8 +17,14 @@ const globalCSS = css`
     margin: 0px;
     padding: 0px;
   }
-
   overflow: hidden;
+  *::-webkit-scrollbar {
+    width: 3px; /* Remove scrollbar space */
+    background: transparent; /* Optional: just make scrollbar invisible */
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
 `
 
 const Transition = () => {
