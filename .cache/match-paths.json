@@ -1,1 +1,26 @@
-[]
+[
+    {
+        "path": "/dev-404-page/",
+        "matchPath": "/dev-404-page/"
+    },
+    {
+        "path": "/fancy/",
+        "matchPath": "/fancy/"
+    },
+    {
+        "path": "/mobile/",
+        "matchPath": "/mobile/"
+    },
+    {
+        "path": "/nice/",
+        "matchPath": "/nice/"
+    },
+    {
+        "path": "/testing/",
+        "matchPath": "/testing/"
+    },
+    {
+        "path": "/",
+        "matchPath": "/*"
+    }
+]

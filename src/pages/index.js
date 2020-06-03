@@ -1,56 +1,85 @@
-/** @jsx jsx */
 import React from "react"
-import styled from "@emotion/styled"
-import { css, jsx } from "@emotion/core"
-import Anilink from "gatsby-plugin-transition-link/AniLink"
+import { css } from "@emotion/core"
+import { Router, useLocation, navigate } from "@reach/router"
+import { AnimatePresence, motion, AnimateSharedLayout } from "framer-motion"
+import WebFont from "webfontloader"
+import { TitleSilly, Title } from "../components/Titles"
 
-import { setup, overrideLinks } from "../Helpers/styles"
-import { Row, Col } from "boostly-ui2"
-import { TitlePrimary, TitleSecondary, Caption } from "../Helpers/Titles"
-import Layout from "../components/Layout"
+import Home from "../components/pages/Home"
+import PrettyHome from "../components/pages/FancyHome"
+import PastWork from "../components/pages/PastWork"
+import { FadeRoute } from "../components/CustomRoutes"
 
-const Content = styled.div`
-  grid-column: 2;
+const globalCSS = css`
+  h1,
+  h2,
+  h3 {
+    margin: 0px;
+    padding: 0px;
+  }
+
+  overflow: hidden;
 `
-const Link = styled(Anilink)`
-  ${overrideLinks};
-`
-const index = () => {
+
+const Transition = () => {
   return (
-    <Layout>
-      <Content>
-        <TitlePrimary mt={`40px`}>Isaac Z Tai</TitlePrimary>
-        <Link
-          fade
-          to={`/nice`}
-          duration={0.5}
+    <div
+      css={css`
+        height: 100vh;
+      `}
+    >
+      <motion.div
+        css={css`
+          height: 100%;
+          background: black;
+          width: 100vw;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        `}
+        key="opening"
+        animate={{
+          height: ["0%", "100%", "100%", "100%", "100%", "100%"],
+          y: ["0%", "0%", "0%", "0%", "100%"],
+        }}
+        onAnimationComplete={() => navigate("home")}
+        transition={{ type: "spring", duration: 2 }}
+      >
+        <motion.h1
           css={css`
-            display: block;
-            color: hsl(0, 0%, 40%);
-            &:hover {
-              text-decoration: underline;
-            }
+            color: white;
           `}
+          animate={{
+            opacity: [0, 0, 1, 1, 0, 0],
+          }}
+          transition={{ duration: 2 }}
         >
-          <Caption>Click here if you can handle it</Caption>
-        </Link>
-        <Col mt={`30px`} space={`evenly`}>
-          <Link paintDrip to={`/mobile`} hex="#fceb95" duration={0.5}>
-            <TitleSecondary>iOS Projects</TitleSecondary>
-          </Link>
-          <Link paintDrip to={`/web`} hex="#419eeb" duration={0.5}>
-            <TitleSecondary
-              css={css`
-                margin-top: 30px;
-              `}
-            >
-              Web Projects
-            </TitleSecondary>
-          </Link>
-        </Col>
-      </Content>
-    </Layout>
+          hello
+        </motion.h1>
+      </motion.div>
+    </div>
   )
 }
 
-export default index
+const App = () => {
+  React.useEffect(() => {
+    WebFont.load({
+      google: {
+        families: ["Peachy Keen", "Righteous", "sans-serif"],
+      },
+    })
+  }, [])
+  const location = useLocation()
+  return (
+    <AnimatePresence exitBeforeEnter>
+      <Router key={location.key} location={location} css={globalCSS}>
+        <Transition path="/" />
+        <FadeRoute path="home" component={Home} />
+        <FadeRoute path="pretty" component={PrettyHome} />
+        <FadeRoute path="past-work/*" component={PastWork} />
+      </Router>
+    </AnimatePresence>
+  )
+}
+
+export default App
