@@ -3,13 +3,23 @@
  *
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
+const path = require('path')
 
-exports.onCreatePage = ({ page, actions }) => {
+exports.onCreatePage = async ({ page, actions }) => {
   const { createPage } = actions
-  // Make the front page match everything client side.
-  // Normally your paths should be a bit more judicious.
+
   if (page.path === `/`) {
     page.matchPath = `/*`
     createPage(page)
   }
+
+  createPage(page)
+}
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      modules: [path.resolve(__dirname, "src"), "node_modules"],
+    },
+  })
 }
