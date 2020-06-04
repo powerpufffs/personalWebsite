@@ -1,8 +1,8 @@
 import React from "react"
 import { css } from "@emotion/core"
 import { Router, useLocation, navigate } from "@reach/router"
-import { AnimatePresence, motion, AnimateSharedLayout } from "framer-motion"
-import WebFont from "webfontloader"
+import { AnimatePresence, motion } from "framer-motion"
+// import WebFont from "webbfontloader"
 import { TitleSilly, Title } from "../components/Titles"
 
 import Home from "../components/pages/Home"
@@ -67,14 +67,14 @@ const Transition = () => {
   )
 }
 
-const App = () => {
-  React.useEffect(() => {
-    WebFont.load({
-      google: {
-        families: ["Peachy Keen", "Righteous", "sans-serif"],
-      },
-    })
-  }, [])
+const Index = () => {
+  // React.useEffect(() => {
+  //   WebFont.load({
+  //     google: {
+  //       families: ["Peachy Keen", "Righteous", "sans-serif"],
+  //     },
+  //   })
+  // }, [])
   const location = useLocation()
   return (
     <AnimatePresence exitBeforeEnter>
@@ -88,4 +88,6 @@ const App = () => {
   )
 }
 
-export default App
+export default Index
+
+

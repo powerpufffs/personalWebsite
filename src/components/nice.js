@@ -9,10 +9,10 @@ import { useTransition, a, config, useSpring, useTrail } from "react-spring"
 
 import { setup, overrideLinks } from "../Helpers/styles"
 import { Row, Col } from "boostly-ui2"
-import Orbit from "../components/Orbit"
+import Orbit from "./Orbit"
 import { TitlePrimary, TitleSecondary, Caption } from "../Helpers/Titles"
-import SquareIcon from "../components/SquareIcon"
-import Switch from "../components/Switch"
+import SquareIcon from "./SquareIcon"
+import Switch from "./Switch"
 
 const UIButton = styled.div`
   position: absolute;

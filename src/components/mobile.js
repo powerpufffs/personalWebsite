@@ -4,10 +4,10 @@ import { css, jsx } from "@emotion/core"
 
 import { Col, Row } from "boostly-ui2"
 import { TitlePrimary, TitleSecondary } from "../Helpers/Titles"
-import Paragraph from "../components/Paragraph"
-import Layout from "../components/Layout"
-import BackButton from "../components/BackButton"
-import GifLoader from "../components/GifLoader"
+import Paragraph from "./Paragraph"
+import Layout from "./Layout"
+import BackButton from "./BackButton"
+import GifLoader from "./GifLoader"
 
 const mobile = () => {
   return (

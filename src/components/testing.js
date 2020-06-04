@@ -27,7 +27,7 @@ const testing = () => {
       }
     },
     config: { duration: 100000 },
-    reset: true,
+  reset: true,
   })
 
   return (

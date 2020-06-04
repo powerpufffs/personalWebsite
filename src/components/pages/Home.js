@@ -1,9 +1,8 @@
 import React from "react"
 import { css } from "@emotion/core"
-import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { Row, Col } from "boostly-ui2"
 import { Link, navigate } from "@reach/router"
-import { RoughNotation, RoughNotationGroup } from "react-rough-notation"
 import { TitleSilly, Title } from "../Titles"
 
 const Spacer = ({ width, height }) => (
@@ -20,12 +19,6 @@ const Home = (props) => {
   React.useEffect(() => {
     setTimeout(() => setShowAnnotations(true), 1000)
   }, [])
-
-  const amazing = React.useMemo(() => (
-    <RoughNotation type="underline" show={showAnnotations}>
-      Amazing
-    </RoughNotation>
-  ))
 
   return (
     <div

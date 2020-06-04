@@ -1,9 +1,8 @@
 import React from "react"
 import { css } from "@emotion/core"
-import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { Row, Col } from "boostly-ui2"
 import { Link, navigate, Router, useLocation } from "@reach/router"
-import { RoughNotation, RoughNotationGroup } from "react-rough-notation"
 import { TitleSilly, Title } from "../Titles"
 
 const data = [
@@ -72,40 +71,38 @@ const Mosaic = (props) => {
         }
       `}
     >
-      <AnimateSharedLayout type="crossfade">
-        <AnimatePresence>
-          {id && <SelectedCard id={id} key="selected" />}
-        </AnimatePresence>
-        <motion.div
-          css={css`
-            grid-column-start: 2;
-            grid-row-start: 2;
-            display: flex;
-            flex-flow: column;
-            max-height: 110vh;
-            margin-left: -8px; /* Adjustment for the gutter */
-            @media only screen and (min-width: 768px) {
-              flex-flow: column wrap;
-              max-height: auto;
-            }
-          `}
-        >
-          {data.map((datum, i) => {
-            const randomHeight = Math.random() * 6 * 80 + 200
-            console.log(randomHeight)
-            return (
-              <Card
-                key={`chin+${datum.id}`}
-                id={datum.id}
-                bgImage={datum.image}
-                title={datum.title}
-                subtitle={datum.subtitle}
-                height={`${randomHeight}px`}
-              />
-            )
-          })}
-        </motion.div>
-      </AnimateSharedLayout>
+      <AnimatePresence>
+        {id && <SelectedCard id={id} key="selected" />}
+      </AnimatePresence>
+      <motion.div
+        css={css`
+          grid-column-start: 2;
+          grid-row-start: 2;
+          display: flex;
+          flex-flow: column;
+          max-height: 110vh;
+          margin-left: -8px; /* Adjustment for the gutter */
+          @media only screen and (min-width: 768px) {
+            flex-flow: column wrap;
+            max-height: auto;
+          }
+        `}
+      >
+        {data.map((datum, i) => {
+          const randomHeight = Math.random() * 6 * 80 + 200
+          console.log(randomHeight)
+          return (
+            <Card
+              key={`chin+${datum.id}`}
+              id={datum.id}
+              bgImage={datum.image}
+              title={datum.title}
+              subtitle={datum.subtitle}
+              height={`${randomHeight}px`}
+            />
+          )
+        })}
+      </motion.div>
     </div>
   )
 }
