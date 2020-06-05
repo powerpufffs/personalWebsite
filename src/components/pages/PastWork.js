@@ -5,7 +5,6 @@ import { Row, Col } from "boostly-ui2"
 import { Link, navigate, Router, useLocation } from "@reach/router"
 import { TitleSilly, Title } from "../Titles"
 import { Hover, Depress } from "../Gestures"
-import { Explode } from "../Animations"
 
 import Card from "../Card"
 
@@ -96,7 +95,7 @@ const Mosaic = (props) => {
         `}
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ type: "spring", mass: 50, damping: 200 }}
+        transition={{ ease: "easeInOut" }}
       >
         <Title
           size={1}
@@ -128,12 +127,13 @@ const Mosaic = (props) => {
           animate={show ? "show" : "hide"}
           variants={{
             show: {
-              transition: { staggerChildren: 0.5, delayChildren: 0.2 },
+              transition: { staggerChildren: 0.5, delayChildren: 0 },
             },
             hide: {
               transition: { staggerChildren: 0.1, staggerDirection: -1 },
             },
           }}
+          initial="hide"
         >
           {data.map((datum, i) => {
             // const randomHeight = Math.random() * 6 * 80 + 200
@@ -161,6 +161,10 @@ const Mosaic = (props) => {
                         },
                       },
                     }}
+                    onAnimationComplete={() => {
+                      console.log("hie")
+                      !show && navigate(`/past-work/${datum.id}`)
+                    }}
                   >
                     <Card
                       id={datum.id}
@@ -168,7 +172,7 @@ const Mosaic = (props) => {
                       title={datum.title}
                       subtitle={datum.subtitle}
                       height={`${heights[i]}px`}
-                      // onClick={() => navigate(`/past-work/${datum.id}`)}
+                      onClick={() => setShow(false)}
                     />
                   </motion.li>
                 </Depress>
@@ -257,7 +261,7 @@ const SelectedCard = ({ id }) => {
 const PastWork = () => {
   return (
     <Router>
-      <Mosaic path="/*" />
+      <Mosaic path="/all" default />
     </Router>
   )
 }
