@@ -9,6 +9,7 @@ import Home from "../components/pages/Home"
 import PrettyHome from "../components/pages/FancyHome"
 import PastWork from "../components/pages/PastWork"
 import { FadeRoute } from "../components/CustomRoutes"
+import NotFound from "../components/pages/404"
 
 const globalCSS = css`
   h1,
@@ -83,11 +84,10 @@ const Index = () => {
         <FadeRoute path="home" component={Home} />
         <FadeRoute path="pretty" component={PrettyHome} />
         <FadeRoute path="past-work/*" component={PastWork} />
+        <NotFound default />
       </Router>
     </AnimatePresence>
   )
 }
 
 export default Index
-
-
