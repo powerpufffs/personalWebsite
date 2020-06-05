@@ -11,3 +11,21 @@ export const Fade = (props) => (
     {props.children}
   </motion.div>
 )
+
+export const Explode = ({ onComplete = (_) => _, ...props }) => {
+  const [done, setDone] = React.useState(false)
+  return (
+    <motion.div
+      animate={{ scale: done ? 10 : 1, opacity: done ? 0 : 1 }}
+      transition={{ duration: 1 }}
+      whileTap={{ scale: 0.9 }}
+      onAnimationComplete={() => {
+        done && onComplete()
+      }}
+      onTap={() => setDone(true)}
+      transition={{ duration: 0.5 }}
+    >
+      {props.children}
+    </motion.div>
+  )
+}

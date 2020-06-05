@@ -1,7 +1,7 @@
 import React from "react"
 import { css } from "@emotion/core"
 
-export const Title = ({ size, ...props }) => {
+export const Title = ({ className, size, color = "black", ...props }) => {
   const getComponent = (size) => {
     switch (size) {
       case 1:
@@ -16,6 +16,7 @@ export const Title = ({ size, ...props }) => {
   }
 
   return React.createElement(getComponent(size), {
+    className: className,
     ...props,
   })
 }
