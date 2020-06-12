@@ -15,7 +15,7 @@ const Spacer = () => (
   />
 )
 
-const Card = ({ id, title, bgImage, subtitle, height = "500px", ...props }) => {
+const Card = ({ title, bgImage, subtitle, height = "500px", ...props }) => {
   return (
     <>
       <div

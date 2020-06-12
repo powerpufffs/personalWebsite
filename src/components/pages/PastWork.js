@@ -5,71 +5,42 @@ import { Row, Col } from "boostly-ui2"
 import { Link, navigate, Router, useLocation } from "@reach/router"
 import { TitleSilly, Title } from "../Titles"
 import { Hover, Depress } from "../Gestures"
+import data from "../../config/projects-config"
 
 import Card from "../Card"
-
-const data = [
-  {
-    id: "1",
-    title: "BUNDL",
-    subtitle: "Kickstarter iOS app",
-    image: require("../../images/bundl-preview.png"),
-  },
-  {
-    id: "2",
-    title: "Calendly Notifier",
-    subtitle: "Text notification service",
-    image: require("../../images/calendly-preview.jpg"),
-  },
-  {
-    id: "3",
-    title: "poqet",
-    subtitle: "Checkout Generator",
-    image: require("../../images/poqet-preview.png"),
-  },
-  {
-    id: "4",
-    title: "Boostly",
-    subtitle: "Restaurant Software",
-    image: require("../../images/bundl-preview.png"),
-  },
-  {
-    id: "5",
-    title: "Off Campus Housing",
-    subtitle: "University app feature",
-    image: require("../../images/och-preview.jpeg"),
-  },
-  {
-    id: "6",
-    title: "",
-    subtitle: "",
-    image: require("../../images/bundl-preview.png"),
-  },
-]
-
-function isInteger(value) {
-  return /^\d+$/.test(value)
-}
+import ProjectDescription from "./ProjectDescription"
+import { _setDefaults } from "gsap/gsap-core"
 
 const Mosaic = (props) => {
   const [show, setShow] = React.useState(false)
+  const [isInitialLoad, setInitial] = React.useState(true)
+  const [destination, setDestination] = React.useState("")
   const location = useLocation()
   const lastPath = location.pathname.substring(
     location.pathname.lastIndexOf("/") + 1
   )
-  const id = isInteger(lastPath) ? lastPath : 0
 
   React.useEffect(() => {
-    setTimeout(() => setShow(true), 2000)
+    setTimeout(() => {
+      setShow(true)
+      setInitial(false)
+    }, 1000)
   }, [])
 
   React.useEffect(() => {
-    console.log(`value changed to: ${show}`)
+    !isInitialLoad &&
+      setTimeout(() => {
+        navigate("past-work/" + destination)
+      }, 1000)
   }, [show])
 
   return (
     <div
       css={css`
+        div[role="group"][tabindex] {
+          background-color: black;
+        }
+
         display: grid;
         grid-template-columns:
           minmax(1rem, 1fr)
@@ -93,7 +64,7 @@ const Mosaic = (props) => {
           justify-self: center;
           align-self: center;
         `}
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 30, backgroundColor: "black" }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ ease: "easeInOut" }}
       >
@@ -103,7 +74,7 @@ const Mosaic = (props) => {
             color: white;
           `}
         >
-          my babies
+          Past Work + Projects
         </Title>
       </motion.div>
       <motion.div
@@ -127,7 +98,7 @@ const Mosaic = (props) => {
           animate={show ? "show" : "hide"}
           variants={{
             show: {
-              transition: { staggerChildren: 0.5, delayChildren: 0 },
+              transition: { staggerChildren: 0.2, delayChildren: 0 },
             },
             hide: {
               transition: { staggerChildren: 0.1, staggerDirection: -1 },
@@ -162,17 +133,19 @@ const Mosaic = (props) => {
                       },
                     }}
                     onAnimationComplete={() => {
-                      console.log("hie")
+                      console.log(show)
                       !show && navigate(`/past-work/${datum.id}`)
                     }}
                   >
                     <Card
-                      id={datum.id}
                       bgImage={datum.image}
                       title={datum.title}
                       subtitle={datum.subtitle}
                       height={`${heights[i]}px`}
-                      onClick={() => setShow(false)}
+                      onClick={() => {
+                        setShow(false)
+                        setDestination(datum.id)
+                      }}
                     />
                   </motion.li>
                 </Depress>
@@ -261,7 +234,8 @@ const SelectedCard = ({ id }) => {
 const PastWork = () => {
   return (
     <Router>
-      <Mosaic path="/all" default />
+      <Mosaic path="/" default />
+      <ProjectDescription path="/:id" />
     </Router>
   )
 }

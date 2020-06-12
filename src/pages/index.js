@@ -18,6 +18,11 @@ const globalCSS = css`
     margin: 0px;
     padding: 0px;
   }
+
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
   overflow: hidden;
   *::-webkit-scrollbar {
     width: 3px; /* Remove scrollbar space */
@@ -84,6 +89,7 @@ const Index = () => {
         <FadeRoute path="home" component={Home} />
         <FadeRoute path="pretty" component={PrettyHome} />
         <FadeRoute path="past-work/*" component={PastWork} />
+        {/* <PastWork path="past-work/*" /> */}
         <NotFound default />
       </Router>
     </AnimatePresence>
